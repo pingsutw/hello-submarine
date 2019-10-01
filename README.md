@@ -12,6 +12,8 @@
   limitations under the License. See accompanying LICENSE file.
 -->
 
+![](https://raw.githubusercontent.com/apache/hadoop-submarine/master/docs/assets/color_logo_with_text.png)
+
 # What is Hadoop Submarine? 
 
 Submarine is a new subproject of Apache Hadoop.
