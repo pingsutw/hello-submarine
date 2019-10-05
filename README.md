@@ -29,3 +29,23 @@ Goals of Submarine:
 - Support specify GPU and other resources.
 - Support launch tensorboard for training jobs if user specified.
 - Support customized DNS name for roles (like tensorboard.$user.$domain:6006)
+
+# hello-submarine 
+
+There is no complete and easy to understand example for beginner, and 
+Submarine support many open source infrastructure, it's hard to deploy each runtime 
+enviroment for engineer, not to metion data sciences
+
+This repo is aim to let user easily deploy container orchestrations (like Hadoop Yarn, k8s) by 
+docker container, support full distributed deep learning example for each runtimes, and
+step by step tutorial for beginner.
+
+## Prerequisites
+- docker
+- Memory > 5G
+
+## Before you start it, you need to konw 
+- [Hadoop](https://hadoop.apache.org/)
+- [Kubernetes](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/)
+- [Tensorflow](https://www.tensorflow.org/)
+- [Pytorch](https://pytorch.org/)
