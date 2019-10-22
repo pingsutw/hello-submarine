@@ -44,7 +44,7 @@ step by step tutorial for beginner.
 - docker
 - Memory > 5G
 
-## Before you start it, you need to konw 
+## Before you start it, you need to know 
 - [Hadoop](https://hadoop.apache.org/)
 - [Kubernetes](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/)
 - [Tensorflow](https://www.tensorflow.org/)
