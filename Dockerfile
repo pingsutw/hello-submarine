@@ -23,3 +23,34 @@ RUN \
   apt-get update && \
   apt-get -y install vim
 
+#install Hadoop
+RUN \
+    wget https://archive.apache.org/dist/hadoop/common/hadoop-3.2.0/hadoop-3.2.0.tar.gz
+    mv hadoop-3.2.0.tar.gz /usr/local/hadoop
+    tar -zxvf hadoop-3.2.0.tar.gz
+
+
+ENV HADOOP_PREFIX=/usr/local/hadoop \
+    HADOOP_COMMON_HOME=/usr/local/hadoop \
+    HADOOP_HDFS_HOME=/usr/local/hadoop \
+    HADOOP_MAPRED_HOME=/usr/local/hadoop \
+    HADOOP_YARN_HOME=/usr/local/hadoop \
+    HADOOP_CONF_DIR=/usr/local/hadoop/etc/hadoop \
+    YARN_CONF_DIR=/usr/local/hadoop/etc/hadoop \
+    PATH=${PATH}:/usr/local/hadoop/bin
+
+
+WORKDIR $HADOOP_PREFIX
+
+# Hdfs ports
+EXPOSE 50010 50020 50070 50075 50090 8020 9000
+# Mapred ports
+EXPOSE 19888
+#Yarn ports
+EXPOSE 8030 8031 8032 8033 8040 8042 8088
+# ZK ports
+EXPOSE 2181 2888 3888
+#Other ports
+EXPOSE 49707 2122
+# Workbench port
+EXPOSE 8080
