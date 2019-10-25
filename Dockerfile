@@ -21,13 +21,13 @@ VOLUME /var/lib/docker
 #INSTALL user tools
 RUN \
   apt-get update && \
-  apt-get -y install vim
+  apt-get -y install vim && \
+  apt-get install -y wget 
 
 #install Hadoop
 RUN \
+    mkdir -p /usr/local/hadoop \
     wget https://archive.apache.org/dist/hadoop/common/hadoop-3.2.0/hadoop-3.2.0.tar.gz
-    mv hadoop-3.2.0.tar.gz /usr/local/hadoop
-    tar -zxvf hadoop-3.2.0.tar.gz
 
 
 ENV HADOOP_PREFIX=/usr/local/hadoop \
