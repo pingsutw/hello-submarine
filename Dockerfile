@@ -26,8 +26,10 @@ RUN \
 
 #install Hadoop
 RUN \
-    mkdir -p /usr/local/hadoop \
-    wget https://archive.apache.org/dist/hadoop/common/hadoop-3.2.0/hadoop-3.2.0.tar.gz
+    mkdir -p /usr/local/hadoop && \
+    cd /usr/local/hadoop && \
+    wget https://archive.apache.org/dist/hadoop/common/hadoop-3.2.0/hadoop-3.2.0.tar.gz && \
+    tar -zxvf hadoop-3.2.0.tar.gz
 
 
 ENV HADOOP_PREFIX=/usr/local/hadoop \
