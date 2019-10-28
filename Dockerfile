@@ -1,4 +1,10 @@
 FROM ubuntu:16.04
+
+ARG hadoop_v=2.9.2
+ARG spark_v=2.4.4
+ARG submarine_v=0.3.0-SNAPSHOT
+ARG zookeeper_v=3.4.14
+
 #INSTALL JAVA
 RUN apt-get -q update \
     && apt-get -q install -y --no-install-recommends openjdk-8-jdk libbcprov-java \
@@ -22,15 +28,25 @@ VOLUME /var/lib/docker
 RUN \
   apt-get update && \
   apt-get -y install vim && \
-  apt-get install -y wget 
+  apt-get install -y wget && \
+  apt-get install -y git
 
 #install Hadoop
 RUN \
     mkdir -p /usr/local/hadoop && \
     cd /usr/local/hadoop && \
-    wget https://archive.apache.org/dist/hadoop/common/hadoop-3.2.0/hadoop-3.2.0.tar.gz && \
-    tar -zxvf hadoop-3.2.0.tar.gz
+    wget http://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common/hadoop-${hadoop_v}/hadoop-${hadoop_v}.tar.gz && \
+    tar -zxvf hadoop-${hadoop_v}.tar.gz
 
+#install spark
+RUN \
+    wget http://mirrors.tuna.tsinghua.edu.cn/apache/spark/spark-${spark_v}/spark-${spark_v}-bin-hadoop2.7.tgz && \
+    tar -zxvf spark-${spark_v}-bin-hadoop2.7.tgz
+
+#install zookeeper
+RUN \
+    wget http://mirror.bit.edu.cn/apache/zookeeper/zookeeper-${zookeeper_v}/zookeeper-${zookeeper_v}.tar.gz && \
+    tar -zxvf zookeeper-${zookeeper_v}.tar.gz
 
 ENV HADOOP_PREFIX=/usr/local/hadoop \
     HADOOP_COMMON_HOME=/usr/local/hadoop \
