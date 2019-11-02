@@ -33,20 +33,48 @@ RUN \
 
 #install Hadoop
 RUN \
-    mkdir -p /usr/local/hadoop && \
-    cd /usr/local/hadoop && \
+    cd /usr/local/ && \
     wget http://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common/hadoop-${hadoop_v}/hadoop-${hadoop_v}.tar.gz && \
-    tar -zxvf hadoop-${hadoop_v}.tar.gz
+    tar -zxvf hadoop-${hadoop_v}.tar.gz && \
+    mv ./hadoop-${HADOOP_VERSION} hadoop
 
 #install spark
 RUN \
     wget http://mirrors.tuna.tsinghua.edu.cn/apache/spark/spark-${spark_v}/spark-${spark_v}-bin-hadoop2.7.tgz && \
     tar -zxvf spark-${spark_v}-bin-hadoop2.7.tgz
 
+ADD spark-defaults-dynamic-allocation.conf /opt/spark-${spark_v}/conf/spark-defaults.conf
+
+RUN \
+  apt-get update && \
+  apt-get install -y vim python python-numpy wget zip python3
+
+# Add pyspark sample
+ADD spark-script /home/yarn/spark-script
+RUN chown -R yarn /home/yarn/spark-script && \
+    chmod +x -R /home/yarn/spark-script
+
+# Add distributedShell example
+ADD conf/yarn-ds-docker.sh /home/yarn
+RUN chown -R yarn /home/yarn/yarn-ds-docker.sh && \
+    chmod +x /home/yarn/yarn-ds-docker.sh
+
 #install zookeeper
 RUN \
     wget http://mirror.bit.edu.cn/apache/zookeeper/zookeeper-${zookeeper_v}/zookeeper-${zookeeper_v}.tar.gz && \
-    tar -zxvf zookeeper-${zookeeper_v}.tar.gz
+    tar -zxvf zookeeper-${zookeeper_v}.tar.gz && \
+    mv ./zookeeper-${zookeeper_v} zookeeper
+
+#install latest submarine
+RUN \
+    cd /opt && \
+    git clone https://github.com/apache/submarine.git && \
+    git submodule update --init --recursive && \
+    mvn clean install package -DskipTests && \
+    cp -r submarine-dist/target/submarine-dist-${submarine_v}* /opt && \
+    cp -r docs/database /home/yarn/database
+
+ADD submarine /home/yarn/submarine
 
 ENV HADOOP_PREFIX=/usr/local/hadoop \
     HADOOP_COMMON_HOME=/usr/local/hadoop \
@@ -72,3 +100,21 @@ EXPOSE 2181 2888 3888
 EXPOSE 49707 2122
 # Workbench port
 EXPOSE 8080
+
+# Create users
+RUN \
+  groupadd -g 1007 hadoop && \
+  useradd -m -G hadoop -u 1008 -s /bin/bash yarn && \
+  chown -R root:hadoop /usr/local/hadoop && \
+  chown -R yarn:hadoop /usr/local/zookeeper
+
+# Copy Config
+COPY conf /tmp/hadoop-config
+
+# Build virtual python env
+RUN cd /home/yarn/submarine && \
+    chmod +x /home/yarn/submarine/* && \
+    /home/yarn/submarine/build_python_virtual_env.sh
+
+# Grant read permission for submarine job
+RUN chown yarn /home/yarn/submarine
