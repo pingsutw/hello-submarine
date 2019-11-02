@@ -5,6 +5,8 @@ ARG spark_v=2.4.4
 ARG submarine_v=0.3.0-SNAPSHOT
 ARG zookeeper_v=3.4.14
 
+RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
+
 #INSTALL JAVA
 RUN apt-get -q update \
     && apt-get -q install -y --no-install-recommends openjdk-8-jdk libbcprov-java \
@@ -34,7 +36,7 @@ RUN \
 #install Hadoop
 RUN \
     cd /usr/local/ && \
-    wget http://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common/hadoop-${hadoop_v}/hadoop-${hadoop_v}.tar.gz && \
+    wget https://www.apache.org/dist/hadoop/core/hadoop-${hadoop_v}/hadoop-${hadoop_v}.tar.gz && \
     tar -zxvf hadoop-${hadoop_v}.tar.gz && \
     mv ./hadoop-${HADOOP_VERSION} hadoop
 
