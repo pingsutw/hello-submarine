@@ -31,19 +31,36 @@ RUN \
   apt-get update && \
   apt-get -y install vim && \
   apt-get install -y wget && \
-  apt-get install -y git
+  apt-get install -y git && \
+  apt-get install -y maven
 
 #install Hadoop
 RUN \
     cd /usr/local/ && \
     wget https://www.apache.org/dist/hadoop/core/hadoop-${hadoop_v}/hadoop-${hadoop_v}.tar.gz && \
     tar -zxvf hadoop-${hadoop_v}.tar.gz && \
-    mv ./hadoop-${HADOOP_VERSION} hadoop
+    mv ./hadoop-${hadoop_v} hadoop
+
+#install zookeeper
+RUN \
+    cd /usr/local/ && \
+    wget http://mirror.bit.edu.cn/apache/zookeeper/zookeeper-${zookeeper_v}/zookeeper-${zookeeper_v}.tar.gz && \
+    tar -zxvf zookeeper-${zookeeper_v}.tar.gz && \
+    mv ./zookeeper-${zookeeper_v} zookeeper
+
+# Create users
+RUN \
+  groupadd -g 1007 hadoop && \
+  useradd -m -G hadoop -u 1008 -s /bin/bash yarn && \
+  chown -R root:hadoop /usr/local/hadoop && \
+  chown -R yarn:hadoop /usr/local/zookeeper
 
 #install spark
 RUN \
-    wget http://mirrors.tuna.tsinghua.edu.cn/apache/spark/spark-${spark_v}/spark-${spark_v}-bin-hadoop2.7.tgz && \
-    tar -zxvf spark-${spark_v}-bin-hadoop2.7.tgz
+    cd /usr/local/ && \
+    wget http://ftp.mirror.tw/pub/apache/spark/spark-${spark_v}/spark-${spark_v}-bin-hadoop2.7.tgz && \
+    tar -xvf spark-${spark_v}-bin-hadoop2.7.tgz && \
+    mv ./spark* /opt
 
 ADD spark-defaults-dynamic-allocation.conf /opt/spark-${spark_v}/conf/spark-defaults.conf
 
@@ -61,16 +78,11 @@ ADD conf/yarn-ds-docker.sh /home/yarn
 RUN chown -R yarn /home/yarn/yarn-ds-docker.sh && \
     chmod +x /home/yarn/yarn-ds-docker.sh
 
-#install zookeeper
-RUN \
-    wget http://mirror.bit.edu.cn/apache/zookeeper/zookeeper-${zookeeper_v}/zookeeper-${zookeeper_v}.tar.gz && \
-    tar -zxvf zookeeper-${zookeeper_v}.tar.gz && \
-    mv ./zookeeper-${zookeeper_v} zookeeper
-
 #install latest submarine
 RUN \
     cd /opt && \
     git clone https://github.com/apache/submarine.git && \
+    cd submarine && \
     git submodule update --init --recursive && \
     mvn clean install package -DskipTests && \
     cp -r submarine-dist/target/submarine-dist-${submarine_v}* /opt && \
@@ -102,13 +114,6 @@ EXPOSE 2181 2888 3888
 EXPOSE 49707 2122
 # Workbench port
 EXPOSE 8080
-
-# Create users
-RUN \
-  groupadd -g 1007 hadoop && \
-  useradd -m -G hadoop -u 1008 -s /bin/bash yarn && \
-  chown -R root:hadoop /usr/local/hadoop && \
-  chown -R yarn:hadoop /usr/local/zookeeper
 
 # Copy Config
 COPY conf /tmp/hadoop-config
