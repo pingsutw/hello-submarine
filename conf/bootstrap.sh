@@ -114,12 +114,7 @@ EOM
   cp ${CONFIG_DIR}/start-yarn-nm.sh $HADOOP_PREFIX/sbin/
   cd $HADOOP_PREFIX/sbin
   chmod +x start-yarn-nm.sh
-  
-  #copy the distributed shell script for debug purpose
-  cp ${CONFIG_DIR}/yarn-ds-docker.sh /home/yarn/
-  chown yarn /home/yarn/yarn-ds-docker.sh
-  chmod +x /home/yarn/yarn-ds-docker.sh
-  
+
   #  wait up to 30 seconds for resourcemanager
   count=0 && while [[ $count -lt 30 && -z `curl -sf http://submarine-dev:8088/ws/v1/cluster/info` ]]; do echo "Waiting for yarn-rm" ; ((count=count+1)) ; sleep 1; done
   [[ $count -eq 30 ]] && echo "Timeout waiting for yarn-rm, exiting." && exit 1

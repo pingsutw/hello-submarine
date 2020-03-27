@@ -1,9 +1,8 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
-ARG hadoop_v=2.9.2
-ARG spark_v=2.4.4
-ARG submarine_v=0.3.0-SNAPSHOT
-ARG zookeeper_v=3.4.14
+ARG hadoop_v="2.9.2"
+ARG submarine_v="0.4.0-SNAPSHOT"
+ARG zookeeper_v="3.4.14"
 
 RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
 
@@ -13,7 +12,8 @@ RUN apt-get -q update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/jre
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
+ENV JRE_HOME /usr/lib/jvm/java-8-openjdk-amd64/jre
 
 #INSTALL Docker
 RUN \
@@ -29,10 +29,7 @@ VOLUME /var/lib/docker
 #INSTALL user tools
 RUN \
   apt-get update && \
-  apt-get -y install vim && \
-  apt-get install -y wget && \
-  apt-get install -y git && \
-  apt-get install -y maven
+  apt-get -y install vim wget git maven
 
 #install Hadoop
 RUN \
@@ -41,7 +38,7 @@ RUN \
     tar -zxvf hadoop-${hadoop_v}.tar.gz && \
     mv ./hadoop-${hadoop_v} hadoop
 
-#install zookeeper
+#install Zookeeper
 RUN \
     cd /usr/local/ && \
     wget http://mirror.bit.edu.cn/apache/zookeeper/zookeeper-${zookeeper_v}/zookeeper-${zookeeper_v}.tar.gz && \
@@ -55,35 +52,15 @@ RUN \
   chown -R root:hadoop /usr/local/hadoop && \
   chown -R yarn:hadoop /usr/local/zookeeper
 
-#install spark
-RUN \
-    cd /usr/local/ && \
-    wget http://ftp.mirror.tw/pub/apache/spark/spark-${spark_v}/spark-${spark_v}-bin-hadoop2.7.tgz && \
-    tar -xvf spark-${spark_v}-bin-hadoop2.7.tgz && \
-    mv ./spark* /opt
-
-ADD spark-defaults-dynamic-allocation.conf /opt/spark-${spark_v}/conf/spark-defaults.conf
-
 RUN \
   apt-get update && \
   apt-get install -y vim python python-numpy wget zip python3
-
-# Add pyspark sample
-ADD spark-script /home/yarn/spark-script
-RUN chown -R yarn /home/yarn/spark-script && \
-    chmod +x -R /home/yarn/spark-script
-
-# Add distributedShell example
-ADD conf/yarn-ds-docker.sh /home/yarn
-RUN chown -R yarn /home/yarn/yarn-ds-docker.sh && \
-    chmod +x /home/yarn/yarn-ds-docker.sh
 
 #install latest submarine
 RUN \
     cd /opt && \
     git clone https://github.com/apache/submarine.git && \
     cd submarine && \
-    git submodule update --init --recursive && \
     mvn clean install package -DskipTests && \
     cp -r submarine-dist/target/submarine-dist-${submarine_v}* /opt && \
     cp -r docs/database /home/yarn/database
