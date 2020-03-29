@@ -25,6 +25,7 @@ RUN \
   apt-get -y install docker-ce
 # So no need to mount host's /var/run/docker.sock, dockerd will create in local fs
 VOLUME /var/lib/docker
+VOLUME /var/lib/docker.sock
 
 #INSTALL user tools
 RUN \
@@ -54,6 +55,7 @@ RUN \
 
 RUN \
   apt-get update && \
+  apt-get install -y python3-distutils && \
   apt-get install -y vim python python-numpy wget zip python3
 
 #install latest submarine
@@ -61,7 +63,7 @@ RUN \
     cd /opt && \
     git clone https://github.com/apache/submarine.git && \
     cd submarine && \
-    mvn clean install package -DskipTests && \
+    mvn clean install package -DskipTests -fn && \
     cp -r submarine-dist/target/submarine-dist-${submarine_v}* /opt && \
     cp -r docs/database /home/yarn/database
 
