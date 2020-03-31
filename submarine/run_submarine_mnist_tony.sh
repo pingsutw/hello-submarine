@@ -47,10 +47,10 @@ else
   WORKER_CMD="myvenv.zip/venv/bin/python mnist_distributed.py --steps 2 --data_dir /tmp/data --working_dir /tmp/mode"
 fi 
 
-SUBMARINE_VERSION=0.3.0-SNAPSHOT
+SUBMARINE_VERSION=0.4.0-SNAPSHOT
 HADOOP_VERSION=2.9
 
-${JAVA_CMD} -cp /opt/submarine-current/submarine-all-${SUBMARINE_VERSION}-hadoop-${HADOOP_VERSION}.jar:/usr/local/hadoop/etc/hadoop \
+${JAVA_CMD} -cp /opt/submarine-dist-${SUBMARINE_VERSION}-hadoop-${HADOOP_VERSION}/submarine-dist-${SUBMARINE_VERSION}-hadoop-${HADOOP_VERSION}/submarine-all-${SUBMARINE_VERSION}-hadoop-${HADOOP_VERSION}.jar:/usr/local/hadoop/etc/hadoop \
  org.apache.submarine.client.cli.Cli job run --name tf-job-001 \
  --framework tensorflow \
  --verbose \
@@ -62,4 +62,4 @@ ${JAVA_CMD} -cp /opt/submarine-current/submarine-all-${SUBMARINE_VERSION}-hadoop
  --worker_launch_cmd "${WORKER_CMD}" \
  --ps_launch_cmd "myvenv.zip/venv/bin/python mnist_distributed.py --steps 2 --data_dir /tmp/data --working_dir /tmp/mode" \
  --insecure \
- --conf tony.containers.resources=/home/yarn/submarine/myvenv.zip#archive,/home/yarn/submarine/mnist_distributed.py,/opt/submarine-current/submarine-all-${SUBMARINE_VERSION}-hadoop-${HADOOP_VERSION}.jar
+ --conf tony.containers.resources=/home/yarn/submarine/myvenv.zip#archive,/home/yarn/submarine/mnist_distributed.py,/opt/submarine-dist-${SUBMARINE_VERSION}-hadoop-${HADOOP_VERSION}/submarine-dist-${SUBMARINE_VERSION}-hadoop-${HADOOP_VERSION}/submarine-all-${SUBMARINE_VERSION}-hadoop-${HADOOP_VERSION}.jar

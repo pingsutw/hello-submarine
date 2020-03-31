@@ -42,10 +42,44 @@ step by step tutorial for beginner.
 
 ## Prerequisites
 - docker
-- Memory > 5G
+- Memory > 8G
 
 ## Before you start it, you need to know 
 - [Hadoop](https://hadoop.apache.org/)
 - [Kubernetes](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/)
 - [Tensorflow](https://www.tensorflow.org/)
 - [Pytorch](https://pytorch.org/)
+
+## Run submarine CTR Library
+```bash
+pwd # /home/yarn/submarine
+. ./venv/bin/activate
+
+# change directory
+cd ..
+cd tests
+
+# run locally
+python run_deepfm.py -conf deepfm.json -task train
+python run_deepfm.py -conf deepfm.json -task evaluate
+
+# run distributedly
+SUBMARINE_VERSION=0.4.0-SNAPSHOT
+SUBMARINE_HADOOP_VERSION=2.9
+SUBMARINE_JAR=/opt/submarine-dist-${SUBMARINE_VERSION}-hadoop-${SUBMARINE_HADOOP_VERSION}/submarine-dist-${SUBMARINE_VERSION}-hadoop-${SUBMARINE_HADOOP_VERSION}/submarine-all-${SUBMARINE_VERSION}-hadoop-${SUBMARINE_HADOOP_VERSION}.jar
+
+java -cp $(${HADOOP_COMMON_HOME}/bin/hadoop classpath --glob):${SUBMARINE_JAR}:${HADOOP_CONF_PATH} \
+ org.apache.submarine.client.cli.Cli job run --name deepfm-job-001 \
+ --framework tensorflow \
+ --verbose \
+ --input_path "" \
+ --num_workers 2 \
+ --worker_resources memory=2G,vcores=4 \
+ --num_ps 1 \
+ --ps_resources memory=2G,vcores=4 \
+ --worker_launch_cmd "myvenv.zip/venv/bin/python run_deepfm.py -conf=deepfm_distributed.json" \
+ --ps_launch_cmd "myvenv.zip/venv/bin/python run_deepfm.py -conf=deepfm_distributed.json" \
+ --insecure \
+ --conf tony.containers.resources=../submarine/myvenv.zip#archive,${SUBMARINE_JAR},deepfm_distributed.json,run_deepfm.py
+
+```

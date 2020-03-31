@@ -1,4 +1,5 @@
 FROM ubuntu:18.04
+USER root
 
 ARG hadoop_v="2.9.2"
 ARG submarine_v="0.4.0-SNAPSHOT"
@@ -68,6 +69,8 @@ RUN \
     cp -r docs/database /home/yarn/database
 
 ADD submarine /home/yarn/submarine
+ADD tests /home/yarn/tests
+
 
 ENV HADOOP_PREFIX=/usr/local/hadoop \
     HADOOP_COMMON_HOME=/usr/local/hadoop \
@@ -99,8 +102,11 @@ COPY conf /tmp/hadoop-config
 
 # Build virtual python env
 RUN cd /home/yarn/submarine && \
-    chmod +x /home/yarn/submarine/* && \
+    chown -R yarn:hadoop /home/yarn/submarine && \
+    chown -R yarn:hadoop /home/yarn/tests && \
     /home/yarn/submarine/build_python_virtual_env.sh
 
 # Grant read permission for submarine job
 RUN chown yarn /home/yarn/submarine
+
+ENTRYPOINT [ "/tmp/hadoop-config/init.sh" ]
