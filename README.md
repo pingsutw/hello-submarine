@@ -50,6 +50,11 @@ step by step tutorial for beginner.
 - [Tensorflow](https://www.tensorflow.org/)
 - [Pytorch](https://pytorch.org/)
 
+## Build dockerfile
+```bash
+docker build --tag hello-submarine .
+docker run -it -h submarine-dev --name mini-submarine --net=bridge --privileged -P hello-submarine /bin/bash
+```
 ## Run submarine CTR Library
 ```bash
 pwd # /home/yarn/submarine
