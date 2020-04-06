@@ -58,6 +58,7 @@ docker run -it -h submarine-dev --name mini-submarine --net=bridge --privileged 
 ## Pull from dockerhub
 ```bash
 docker pull pingsutw/hello-submarine
+docker run -it -h submarine-dev --name mini-submarine --net=bridge --privileged -P pingsutw/hello-submarine /bin/bash
 ```
 ## Run submarine CTR Library
 ```bash
