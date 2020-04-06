@@ -55,6 +55,10 @@ step by step tutorial for beginner.
 docker build --tag hello-submarine .
 docker run -it -h submarine-dev --name mini-submarine --net=bridge --privileged -P hello-submarine /bin/bash
 ```
+## Pull from dockerhub
+```bash
+docker pull pingsutw/hello-submarine
+```
 ## Run submarine CTR Library
 ```bash
 pwd # /home/yarn/submarine
