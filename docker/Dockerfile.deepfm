@@ -1,0 +1,9 @@
+FROM pingsutw/submarine-sdk:0.1
+
+COPY data /var/data
+COPY tf_deepfm /var/tf_deepfm
+
+WORKDIR /var/tf_deepfm
+
+ENTRYPOINT ["python3", "/var/tf_deepfm/run_deepfm.py"]
+CMD ["-conf", "/var/tf_deepfm/deepfm.json"]
