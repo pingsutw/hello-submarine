@@ -1,12 +1,12 @@
 {
   "input": {
-    "train_data": ["/var/data/tr.libsvm"],
-    "valid_data": ["/var/data/va.libsvm"],
-    "test_data": ["/var/data/te.libsvm"],
+    "train_data": ["hdfs://192.168.103.160:8020/user/root/data/tr.libsvm"],
+    "valid_data": ["hdfs://192.168.103.160:8020/user/root/data/va.libsvm"],
+    "test_data": ["hdfs://192.168.103.160:8020/user/root/data/te.libsvm"],
     "type": "libsvm"
   },
   "output": {
-    "save_model_dir": "/var/tf_deepfm/experiment",
+    "save_model_dir": "hdfs://192.168.103.160:8020/user/root/deepfm-test1",
     "metric": "auc"
   },
   "training": {
@@ -24,7 +24,7 @@
     "optimizer": "adam",
     "log_steps": 10,
     "seed": 77,
-    "mode": "distributed"
+    "mode": "local"
   },
   "resource": {
     "num_cpu": 4,

@@ -27,3 +27,6 @@ RUN bash /install/ubuntu_install_python.sh
 
 COPY install/ubuntu_install_pysubmarine.sh /install/ubuntu_install_pysubmarine.sh
 RUN bash /install/ubuntu_install_pysubmarine.sh
+
+COPY install/ubuntu_install_hadoop.sh /install/ubuntu_install_hadoop.sh
+RUN bash /install/ubuntu_install_hadoop.sh

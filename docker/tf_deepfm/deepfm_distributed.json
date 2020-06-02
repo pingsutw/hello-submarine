@@ -1,12 +1,12 @@
 {
   "input": {
-    "train_data": ["hdfs:///user/submarine/data/tr.libsvm"],
-    "valid_data": ["hdfs:///user/submarine/data/va.libsvm"],
-    "test_data": ["hdfs:///user/submarine/data/te.libsvm"],
+    "train_data": ["hdfs://192.168.103.160:8020/user/root/data/tr.libsvm"],
+    "valid_data": ["hdfs://192.168.103.160:8020/user/root/data/va.libsvm"],
+    "test_data": ["hdfs://192.168.103.160:8020/user/root/data/te.libsvm"],
     "type": "libsvm"
   },
   "output": {
-    "save_model_dir": "hdfs:///user/submarine/deepfm",
+    "save_model_dir": "hdfs://192.168.103.160:8020/user/root/deepfm-test1",
     "metric": "auc"
   },
   "training": {
