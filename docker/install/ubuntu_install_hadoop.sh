@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-hadoop_v="2.9.2"
+hadoop_v="3.2.1"
 
 #INSTALL JAVA
 apt-get -q update \
@@ -25,7 +25,7 @@ export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 export JRE_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
 
 cd /usr/local/ && \
-    wget https://www.apache.org/dist/hadoop/core/hadoop-${hadoop_v}/hadoop-${hadoop_v}.tar.gz && \
+    wget http://ftp.twaren.net/Unix/Web/apache/hadoop/common/hadoop-${hadoop_v}/hadoop-${hadoop_v}.tar.gz && \
     tar -zxvf hadoop-${hadoop_v}.tar.gz && \
     mv ./hadoop-${hadoop_v} hadoop
 
