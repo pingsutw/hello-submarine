@@ -6,7 +6,7 @@
     "type": "libsvm"
   },
   "output": {
-    "save_model_dir": "hdfs://140.116.245.134:9000/user/submarine/deepfm-test1",
+    "save_model_dir": "hdfs://140.116.245.134:9000/user/submarine/deepfm-test",
     "metric": "auc"
   },
   "training": {
@@ -27,8 +27,8 @@
     "mode": "local"
   },
   "resource": {
-    "num_cpu": 4,
-    "num_gpu": 0,
+    "num_cpu": 8,
+    "num_gpu": 1,
     "num_thread": 0
   }
 }

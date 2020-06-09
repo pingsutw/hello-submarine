@@ -20,7 +20,7 @@ from comet_ml import Experiment
 experiment = Experiment(api_key="ej6XeyCVjqHM8uLDNj5VGrzjP",
                         project_name="testing", workspace="pingsutw")
 
-from submarine.ml.model import DeepFM
+from submarine.ml.tensorflow.model import DeepFM
 import argparse
 
 if __name__ == '__main__':
