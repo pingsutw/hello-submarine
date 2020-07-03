@@ -7,7 +7,7 @@ ARG zookeeper_v="3.4.14"
 
 RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
 
-#INSTALL JAVA
+#Install JAVA
 RUN apt-get -q update \
     && apt-get -q install -y --no-install-recommends openjdk-8-jdk libbcprov-java \
     && apt-get clean \
@@ -16,7 +16,7 @@ RUN apt-get -q update \
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 ENV JRE_HOME /usr/lib/jvm/java-8-openjdk-amd64/jre
 
-#INSTALL Docker
+#Install Docker
 RUN \
   apt-get update && \
   apt-get -y install apt-transport-https ca-certificates curl software-properties-common && \
@@ -28,19 +28,19 @@ RUN \
 VOLUME /var/lib/docker
 VOLUME /var/lib/docker.sock
 
-#INSTALL user tools
+#Install user tools
 RUN \
   apt-get update && \
   apt-get -y install vim wget git maven
 
-#install Hadoop
+#Install Hadoop
 RUN \
     cd /usr/local/ && \
     wget https://www.apache.org/dist/hadoop/core/hadoop-${hadoop_v}/hadoop-${hadoop_v}.tar.gz && \
     tar -zxvf hadoop-${hadoop_v}.tar.gz && \
     mv ./hadoop-${hadoop_v} hadoop
 
-#install Zookeeper
+#Install Zookeeper
 RUN \
     cd /usr/local/ && \
     wget http://mirror.bit.edu.cn/apache/zookeeper/zookeeper-${zookeeper_v}/zookeeper-${zookeeper_v}.tar.gz && \
@@ -59,7 +59,7 @@ RUN \
   apt-get install -y python3-distutils && \
   apt-get install -y vim python python-numpy wget zip python3
 
-#install latest submarine
+#Install latest submarine
 RUN \
     cd /opt && \
     git clone https://github.com/apache/submarine.git && \
@@ -88,11 +88,11 @@ WORKDIR $HADOOP_PREFIX
 EXPOSE 50010 50020 50070 50075 50090 8020 9000
 # Mapred ports
 EXPOSE 19888
-#Yarn ports
+# Yarn ports
 EXPOSE 8030 8031 8032 8033 8040 8042 8088
 # ZK ports
 EXPOSE 2181 2888 3888
-#Other ports
+# Other ports
 EXPOSE 49707 2122
 # Workbench port
 EXPOSE 8080
