@@ -100,11 +100,12 @@ cd tests
 # run locally
 python run_deepfm.py -conf deepfm.json -task train
 python run_deepfm.py -conf deepfm.json -task evaluate
+# Model metrics :  {'auc': 0.64110434, 'loss': 0.4406755, 'global_step': 12}
 
 # run distributedly
-SUBMARINE_VERSION=0.4.0-SNAPSHOT
-SUBMARINE_HADOOP_VERSION=2.9
-SUBMARINE_JAR=/opt/submarine-dist-${SUBMARINE_VERSION}-hadoop-${SUBMARINE_HADOOP_VERSION}/submarine-dist-${SUBMARINE_VERSION}-hadoop-${SUBMARINE_HADOOP_VERSION}/submarine-all-${SUBMARINE_VERSION}-hadoop-${SUBMARINE_HADOOP_VERSION}.jar
+export SUBMARINE_VERSION=0.5.0-SNAPSHOT
+export SUBMARINE_HADOOP_VERSION=2.9
+export SUBMARINE_JAR=/opt/submarine-dist-${SUBMARINE_VERSION}-hadoop-${SUBMARINE_HADOOP_VERSION}/submarine-dist-${SUBMARINE_VERSION}-hadoop-${SUBMARINE_HADOOP_VERSION}/submarine-all-${SUBMARINE_VERSION}-hadoop-${SUBMARINE_HADOOP_VERSION}.jar
 
 java -cp $(${HADOOP_COMMON_HOME}/bin/hadoop classpath --glob):${SUBMARINE_JAR}:${HADOOP_CONF_PATH} \
  org.apache.submarine.client.cli.Cli job run --name deepfm-job-001 \

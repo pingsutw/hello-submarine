@@ -2,7 +2,7 @@ FROM ubuntu:18.04
 USER root
 
 ARG hadoop_v="2.9.2"
-ARG submarine_v="0.4.0-SNAPSHOT"
+ARG submarine_v="0.5.0-SNAPSHOT"
 ARG zookeeper_v="3.4.14"
 
 RUN apt-get update && apt-get install -y --no-install-recommends apt-utils

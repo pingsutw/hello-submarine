@@ -14,10 +14,17 @@
 
 ## Build from local
 ```bash
+docker build --tag submarine-sdk:0.1 -f Dockerfile.submarine-sdk .
 docker build --tag tf-deepfm -f Dockerfile.deepfm .
+
+# Build for dockerhub
+docker build --tag pingsutw/submarine-sdk:0.1 -f Dockerfile.submarine-sdk .
+docker build --tag pingsutw/tf-deepfm -f Dockerfile.deepfm .
 ```
 
 ## Run TensorFlow DeepFM locally
 ```bash
-docker run tf-deepfm
+docker run -it tf-deepfm bash
+# or
+docker run -it pingsutw/tf-deepfm bash
 ```
