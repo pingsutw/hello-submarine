@@ -11,7 +11,7 @@ jobs:
     env:
       PYTHON: ${{ matrix.python }}
     steps:
-      - names: push hello-submarine to dockerhub
+      - name: push hello-submarine to dockerhub
         uses: docker/build-push-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
