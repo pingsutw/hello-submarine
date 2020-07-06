@@ -16,6 +16,7 @@
 ```bash
 docker build --tag submarine-sdk:0.1 -f Dockerfile.submarine-sdk .
 docker build --tag tf-deepfm -f Dockerfile.deepfm .
+docker build --tag test -f Dockerfile.test .
 
 # Build for dockerhub
 docker build --tag pingsutw/submarine-sdk:0.1 -f Dockerfile.submarine-sdk .
