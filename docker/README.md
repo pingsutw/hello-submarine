@@ -11,12 +11,25 @@
   See the License for the specific language governing permissions and
   limitations under the License. See accompanying LICENSE file.
 -->
+## Run test image
+```bash
+docker build --tag test -f Dockerfile.test .
+docker run --rm --pid=host --privileged \
+    -v /home/dslab/git/hello-submarine/docker:/workspace \
+    -w /workspace \
+    -e "CI_BUILD_HOME=/workspace" \
+    -e "CI_BUILD_USER=$(id -u -n)" \
+    -e "CI_BUILD_UID=$(id -u)" \
+    -e "CI_BUILD_GROUP=$(id -g -n)" \
+    -e "CI_BUILD_GID=$(id -g)" \
+    -it test \
+    bash --login test.sh bash
+```
 
 ## Build from local
 ```bash
 docker build --tag submarine-sdk:0.1 -f Dockerfile.submarine-sdk .
 docker build --tag tf-deepfm -f Dockerfile.deepfm .
-docker build --tag test -f Dockerfile.test .
 
 # Build for dockerhub
 docker build --tag pingsutw/submarine-sdk:0.1 -f Dockerfile.submarine-sdk .
