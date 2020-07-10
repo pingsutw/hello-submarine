@@ -12,6 +12,19 @@
   limitations under the License. See accompanying LICENSE file.
 -->
 
+[![Docker Hub package][dockerhub-badge]][dockerhub-link]
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
+[![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://GitHub.com/Naereen/ama)
+[![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
+[![GitHub forks](https://img.shields.io/github/forks/pingsutw/hello-submarine.svg?style=social&label=Fork&maxAge=2592000)](https://GitHub.com/pingsutw/hello-submarine/network/)
+![Tweeting](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)
+
+[![ForTheBadge built-with-swag](http://ForTheBadge.com/images/badges/built-with-swag.svg)](https://GitHub.com/Naereen/)
+[![ForTheBadge built-with-science](http://ForTheBadge.com/images/badges/built-with-science.svg)](https://GitHub.com/Naereen/)
+
+[dockerhub-badge]: https://img.shields.io/docker/automated/coqorg/coq.svg
+[dockerhub-link]: https://hub.docker.com/u/pingsutw "Automated build on Docker Hub"
+
 ![](https://raw.githubusercontent.com/apache/hadoop-submarine/master/docs/assets/color_logo_with_text.png)
 
 #### **Table of Contents**
