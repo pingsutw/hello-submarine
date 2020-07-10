@@ -68,9 +68,6 @@ RUN \
     cp -r submarine-dist/target/submarine-dist-${submarine_v}* /opt && \
     cp -r docs/database /home/yarn/database
 
-ADD submarine /home/yarn/submarine
-ADD tests /home/yarn/tests
-
 
 ENV HADOOP_PREFIX=/usr/local/hadoop \
     HADOOP_COMMON_HOME=/usr/local/hadoop \
@@ -99,6 +96,8 @@ EXPOSE 8080
 
 # Copy Config
 COPY conf /tmp/hadoop-config
+ADD submarine /home/yarn/submarine
+ADD tests /home/yarn/tests
 
 # Build virtual python env
 RUN cd /home/yarn/submarine && \

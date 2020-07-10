@@ -16,11 +16,11 @@
 FROM pingsutw/submarine-sdk:0.1
 
 COPY data /var/data
-COPY tf_deepfm /var/tf_deepfm
-COPY init.sh /var/tf_deepfm
-COPY test-hdfs.sh /var/tf_deepfm
+COPY example /var/example
+COPY init.sh /var/example
+COPY test-hdfs.sh /var/example
 
-WORKDIR /var/tf_deepfm
+WORKDIR /var/example
 
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 ENV JRE_HOME /usr/lib/jvm/java-8-openjdk-amd64/jre
@@ -40,5 +40,5 @@ ENV CLASSPATH=/usr/local/hadoop/etc/hadoop:/usr/local/hadoop/share/hadoop/common
 
 
 # ENTRYPOINT ["/var/init.sh"]
-# ENTRYPOINT ["python3", "/var/tf_deepfm/run_deepfm.py"]
-# CMD ["-conf", "/var/tf_deepfm/deepfm.json"]
+# ENTRYPOINT ["python3", "/var/example/run_deepfm.py"]
+# CMD ["-conf", "/var/example/deepfm.json"]
