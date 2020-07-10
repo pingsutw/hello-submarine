@@ -28,11 +28,9 @@ docker run --rm --pid=host --privileged \
 
 ## Build from local
 ```bash
-docker build --tag submarine-sdk:0.1 -f Dockerfile.submarine-sdk .
 docker build --tag tf-deepfm -f Dockerfile.deepfm .
 
 # Build for dockerhub
-docker build --tag pingsutw/submarine-sdk:0.1 -f Dockerfile.submarine-sdk .
 docker build --tag pingsutw/tf-deepfm -f Dockerfile.deepfm .
 ```
 

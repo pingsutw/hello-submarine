@@ -80,7 +80,7 @@ mini-submarine includes:
 - TensorFlow example (MNIST handwritten digit)
 ### Build docker image from local
 ```bash
-docker build --tag hello-submarine .
+docker build --tag hello-submarine ./mini-submarine
 docker run -it -h submarine-dev --name mini-submarine --net=bridge --privileged -P hello-submarine /bin/bash
 ```
 ### Pull image from dockerhub
@@ -139,6 +139,13 @@ curl -Lo ./kind "https://github.com/kubernetes-sigs/kind/releases/download/v0.7.
 chmod +x ./kind
 mv ./kind /some-dir-in-your-PATH/kind
 ```
+#### Create K8s Cluster
+```shell script
+kind create cluster --image kindest/node:v1.15.6 --name k8s-submarine
+kubectl create namespace submarine
+# set submarine as default namspace
+kubectl config set-context --current --namespace=submarine
+```
 #### Install Kubectl
 ```shell script
 curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
@@ -153,13 +160,6 @@ sudo apt-get install apt-transport-https --yes
 echo "deb https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
 sudo apt-get update
 sudo apt-get install helm
-```
-#### Create K8s Cluster
-```shell script
-kind create cluster --image kindest/node:v1.15.6 --name k8s-submarine
-kubectl create namespace submarine
-# set submarine as default namspace
-kubectl config set-context --current --namespace=submarine
 ```
 #### Deploy Submarine On K8s
 ```shell script
