@@ -17,7 +17,6 @@ FROM pingsutw/submarine-sdk:0.1
 
 COPY data /var/data
 COPY example /var/example
-COPY init.sh /var/example
 COPY test-hdfs-connect.py /var/example
 
 WORKDIR /var/example
