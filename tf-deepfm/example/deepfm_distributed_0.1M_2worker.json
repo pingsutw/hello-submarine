@@ -27,9 +27,9 @@
     "mode": "distributed"
   },
   "resource": {
-    "num_cpu": 4,
+    "num_cpu": 20,
     "num_gpu": 0,
-    "num_thread": 0
+    "num_thread": 1
   }
 }
 

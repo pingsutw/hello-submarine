@@ -34,7 +34,7 @@ python run_deepfm.py -conf=deepfm.json -task_type evaluate
 ### Running DeepFM on Submarine
 1. Upload data to a shared file system like hdfs, s3.
 
-2. Create a JSON configuration file for distributed training. e.g. [deepfm_distributed.json](./deepfm_distributed.json)
+2. Create a JSON configuration file for distributed training. e.g. [deepfm_distributed.json](deepfm_distributed_0.1M_1worker.json)
 
 3. Submit Job
 ```
