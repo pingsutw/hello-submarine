@@ -13,8 +13,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import tensorflow as tf
+FROM pingsutw/submarine-sdk:0.5.0
 
-# tf.io.gfile.makedirs("hdfs://kevin0:8020/user/root/test")
-#print(tf.gfile.ListDirectory('hdfs://192.168.103.160:8020/user/root/'))
-print(tf.io.gfile.listdir('hdfs://140.116.245.134:9000/user'))
+RUN mkdir -p /var/example
+COPY tracking.py /var/example
+
+WORKDIR /var/example
+
+ENTRYPOINT ["python3", "/var/example/tracking.py"]
+# CMD ["-conf", "/var/example/deepfm.json"]

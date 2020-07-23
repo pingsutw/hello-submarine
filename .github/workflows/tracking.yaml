@@ -1,0 +1,29 @@
+name: tracking-example
+
+on:
+  push:
+  schedule:
+    - cron: 30 3,15 * * *
+    # ref: https://pubs.opengroup.org/onlinepubs/9699919799/utilities/crontab.html#tag_20_25_07
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    strategy:
+      fail-fast: false
+    env:
+      PYTHON: ${{ matrix.python }}
+    # https://github.com/marketplace/actions/docker-build-push
+    # https://github.com/docker/build-push-action
+    # https://github.com/docker/build-push-action/blob/master/.github/workflows/main.yml
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - uses: docker/build-push-action@v1
+        name: Build & push Docker image - tracking-example
+        with:
+          repository: pingsutw/tracking-example
+          tags: 0.5.0
+          path: ./tracking-example
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}

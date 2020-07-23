@@ -14,15 +14,8 @@
 
 ## Build from local
 ```bash
-docker build --tag tf-deepfm:0.5.0 -f Dockerfile .
+docker build --tag tracking-examlpe:0.5.0 -f Dockerfile .
 
 # Build for dockerhub
-docker build --tag pingsutw/tf-deepfm:0.5.0 -f Dockerfile .
-```
-
-## Run TensorFlow DeepFM locally
-```bash
-docker run -it tf-deepfm:0.5.0 bash
-# or
-docker run -it pingsutw/tf-deepfm:0.5.0 bash
+docker build --tag pingsutw/tracking-examlpe:0.5.0 -f Dockerfile .
 ```

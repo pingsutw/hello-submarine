@@ -13,8 +13,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import tensorflow as tf
+import submarine
 
-# tf.io.gfile.makedirs("hdfs://kevin0:8020/user/root/test")
-#print(tf.gfile.ListDirectory('hdfs://192.168.103.160:8020/user/root/'))
-print(tf.io.gfile.listdir('hdfs://140.116.245.134:9000/user'))
+if __name__ == "__main__":
+    submarine.set_tracking_uri("mysql+pymysql://140.116.245.134:password@192.168.103.9:3306/submarine")
+
+    submarine.log_param("max_iter", 100)
+    submarine.log_param("learning_rate", 0.0001)
+    submarine.log_param("alpha", 20)
+    submarine.log_param("batch_size", 256)
+
+    submarine.log_metric("score", 2)
+    submarine.log_metric("score", 5)
+    submarine.log_metric("score", 8)
+    submarine.log_metric("score", 5)
+    submarine.log_metric("score", 10)
