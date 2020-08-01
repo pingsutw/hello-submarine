@@ -16,7 +16,8 @@
 import submarine
 
 if __name__ == "__main__":
-    submarine.set_tracking_uri("mysql+pymysql://140.116.245.134:password@192.168.103.9:3306/submarine")
+    submarine.set_tracking_uri(
+        "mysql+pymysql://submarine:password@140.116.245.134:3306/submarine")
 
     submarine.log_param("max_iter", 100)
     submarine.log_param("learning_rate", 0.0001)
