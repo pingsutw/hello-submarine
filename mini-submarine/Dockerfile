@@ -43,7 +43,7 @@ RUN \
 #Install Zookeeper
 RUN \
     cd /usr/local/ && \
-    wget http://mirror.bit.edu.cn/apache/zookeeper/zookeeper-${zookeeper_v}/zookeeper-${zookeeper_v}.tar.gz && \
+    wget https://archive.apache.org/dist/zookeeper/zookeeper-${zookeeper_v}/zookeeper-${zookeeper_v}.tar.gz \
     tar -zxvf zookeeper-${zookeeper_v}.tar.gz && \
     mv ./zookeeper-${zookeeper_v} zookeeper
 
