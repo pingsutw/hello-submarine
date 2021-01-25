@@ -1,8 +1,8 @@
 FROM ubuntu:18.04
 USER root
 
-ARG hadoop_v="2.9.2"
-ARG submarine_v="0.5.0-SNAPSHOT"
+ARG hadoop_v="2.10.1"
+ARG submarine_v="0.6.0-SNAPSHOT"
 ARG zookeeper_v="3.4.14"
 
 RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
@@ -43,7 +43,7 @@ RUN \
 #Install Zookeeper
 RUN \
     cd /usr/local/ && \
-    wget https://archive.apache.org/dist/zookeeper/zookeeper-${zookeeper_v}/zookeeper-${zookeeper_v}.tar.gz \
+    wget https://archive.apache.org/dist/zookeeper/zookeeper-${zookeeper_v}/zookeeper-${zookeeper_v}.tar.gz && \
     tar -zxvf zookeeper-${zookeeper_v}.tar.gz && \
     mv ./zookeeper-${zookeeper_v} zookeeper
 
