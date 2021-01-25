@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 240
     strategy:
-      fail-fast: false
+      fail-fast: true
     env:
       PYTHON: ${{ matrix.python }}
     # https://github.com/marketplace/actions/docker-build-push
