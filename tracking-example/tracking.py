@@ -17,12 +17,12 @@ from comet_ml import Experiment
 import submarine
 from submarine.utils import env
 
-experiment = Experiment(api_key="ej6XeyCVjqHM8uLDNj5VGrzjP",
-                        project_name="testing", workspace="pingsutw")
+#experiment = Experiment(api_key="ej6XeyCVjqHM8uLDNj5VGrzjP",
+#                        project_name="testing", workspace="pingsutw")
 
 if __name__ == "__main__":
     submarine.set_tracking_uri(
-        "mysql+pymysql://submarine:password@140.116.245.134:3306/submarine")
+        "mysql+pymysql://submarine:password@submarine-database/submarine")
 
     print("TF_CONFIG", env.get_env("TF_CONFIG"))
     print("JOB_NAME: ", env.get_env("JOB_NAME"))
