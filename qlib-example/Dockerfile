@@ -16,7 +16,7 @@
 FROM pingsutw/submarine-sdk:latest
 
 RUN mkdir -p /var/example
-COPY workflow_by_code.py.py /var/example
+COPY workflow_by_code.py /var/example
 
 WORKDIR /var/example
 
