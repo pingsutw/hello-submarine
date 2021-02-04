@@ -23,7 +23,7 @@ jobs:
         name: Build & push Docker image - submarine-sdk
         with:
           repository: pingsutw/submarine-sdk
-          tags: 0.5.0
+          tags: latest
           path: ./submarine-sdk
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}

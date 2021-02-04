@@ -19,8 +19,8 @@ This docker image includes
 
 ## Build from local
 ```bash
-docker build --tag submarine-sdk:0.5.0 -f Dockerfile .
+docker build --tag submarine-sdk:latest -f Dockerfile .
 
 # Build for dockerhub
-docker build --tag pingsutw/submarine-sdk:0.5.0 -f Dockerfile .
+docker build --tag pingsutw/submarine-sdk:latest -f Dockerfile .
 ```

@@ -14,8 +14,8 @@
 
 ## Build from local
 ```bash
-docker build --tag tracking-examlpe:0.5.0 -f Dockerfile .
+docker build --tag tracking-examlpe:latest -f Dockerfile .
 
 # Build for dockerhub
-docker build --tag pingsutw/tracking-examlpe:0.5.0 -f Dockerfile .
+docker build --tag pingsutw/tracking-examlpe:latest -f Dockerfile .
 ```

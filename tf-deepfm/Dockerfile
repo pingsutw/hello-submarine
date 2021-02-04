@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM pingsutw/submarine-sdk:0.5.0
+FROM pingsutw/submarine-sdk:latest
 
 COPY data /var/data
 COPY example /var/example

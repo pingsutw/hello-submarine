@@ -23,7 +23,7 @@ jobs:
         name: Build & push Docker image - tracking-example
         with:
           repository: pingsutw/tracking-example
-          tags: 0.5.0
+          tags: latest
           path: ./tracking-example
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}

@@ -23,7 +23,7 @@ jobs:
         name: Build & push Docker image - hello-submarine
         with:
           repository: pingsutw/hello-submarine
-          tags: 0.5.0
+          tags: latest
           path: ./mini-submarine
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}

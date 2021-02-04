@@ -23,7 +23,7 @@ jobs:
         name: Build & push Docker image - tf-deepfm
         with:
           repository: pingsutw/tf-deepfm
-          tags: 0.5.0
+          tags: latest
           path: ./tf-deepfm
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}

@@ -116,7 +116,7 @@ python run_deepfm.py -conf deepfm.json -task evaluate
 # Model metrics :  {'auc': 0.64110434, 'loss': 0.4406755, 'global_step': 12}
 
 # run distributedly
-export SUBMARINE_VERSION=0.5.0-SNAPSHOT
+export SUBMARINE_VERSION=0.6.0-SNAPSHOT
 export SUBMARINE_HADOOP_VERSION=2.9
 export SUBMARINE_JAR=/opt/submarine-dist-${SUBMARINE_VERSION}-hadoop-${SUBMARINE_HADOOP_VERSION}/submarine-dist-${SUBMARINE_VERSION}-hadoop-${SUBMARINE_HADOOP_VERSION}/submarine-all-${SUBMARINE_VERSION}-hadoop-${SUBMARINE_HADOOP_VERSION}.jar
 
@@ -212,7 +212,7 @@ curl -X POST -H "Content-Type: application/json" -d '
     }
   }
 }
-' http://127.0.0.1:8080/api/v1/experiment
+' http://127.0.0.1:32080/api/v1/experiment
 ```
 ## Submarine On Hadoop
 TBD
