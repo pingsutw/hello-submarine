@@ -13,20 +13,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM ubuntu:18.04
+FROM pingsutw/submarine-sdk:latest
 
-RUN apt-get update --fix-missing
+RUN mkdir -p /var/example
+COPY workflow_by_code.py.py /var/example
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-        git make libgtest-dev cmake wget unzip libtinfo-dev libz-dev\
-        libcurl4-openssl-dev libopenblas-dev g++ sudo \
-        apt-transport-https wget git curl vim
+WORKDIR /var/example
 
-COPY install/ubuntu_install_python.sh /install/ubuntu_install_python.sh
-RUN bash /install/ubuntu_install_python.sh
-
-COPY install/ubuntu_install_python_package.sh /install/ubuntu_install_python_package.sh
-RUN bash /install/ubuntu_install_pysubmarine.sh
-
-COPY install/ubuntu_install_hadoop.sh /install/ubuntu_install_hadoop.sh
-RUN bash /install/ubuntu_install_hadoop.sh
+ENTRYPOINT ["python3", "/var/example/workflow_by_code.py"]
+# CMD ["-conf", "/var/example/deepfm.json"]
