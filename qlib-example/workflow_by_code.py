@@ -112,7 +112,6 @@ if __name__ == "__main__":
     # start exp
     with R.start(experiment_name="workflow"):
         R.log_params(**flatten_dict(task))
-        submarine.log_param(**flatten_dict(task))
         model.fit(dataset)
 
         # prediction
