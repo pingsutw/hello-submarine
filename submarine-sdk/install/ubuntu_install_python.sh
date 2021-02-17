@@ -39,4 +39,4 @@ rm -f /usr/bin/python3 && ln -s /usr/bin/python3.6 /usr/bin/python3
 cd /tmp && wget -q https://bootstrap.pypa.io/get-pip.py && python3.6 get-pip.py
 
 # Pin pip version
-pip3 install pip==20.1.1
+pip install --upgrade pip
