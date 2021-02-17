@@ -66,7 +66,7 @@ RUN \
     cd submarine && \
     mvn clean install package -DskipTests -fn && \
     cp -r submarine-dist/target/submarine-dist-${submarine_v}* /opt && \
-    cp -r docs/database /home/yarn/database
+    cp -r dev-support/database /home/yarn/database
 
 
 ENV HADOOP_PREFIX=/usr/local/hadoop \

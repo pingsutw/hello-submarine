@@ -2,9 +2,9 @@ name: hello-submarine
 
 on:
   push:
- # schedule:
-  # - cron: 30 0,12 * * *
-    # ref: https://pubs.opengroup.org/onlinepubs/9699919799/utilities/crontab.html#tag_20_25_07
+  schedule:
+   - cron: 30 0,12 * * *
+     # ref: https://pubs.opengroup.org/onlinepubs/9699919799/utilities/crontab.html#tag_20_25_07
 jobs:
   build:
     runs-on: ubuntu-latest
