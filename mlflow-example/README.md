@@ -14,8 +14,8 @@
 
 ## Build from local
 ```bash
-docker build --tag mlflow-examlpe:latest -f Dockerfile .
+docker build --tag mlflow-example:latest -f Dockerfile .
 
 # Build for dockerhub
-docker build --tag pingsutw/mlflow-examlpe:latest -f Dockerfile .
+docker build --tag pingsutw/mlflow-example:latest -f Dockerfile .
 ```

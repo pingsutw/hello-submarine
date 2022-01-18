@@ -14,8 +14,8 @@
 
 ## Build from local
 ```bash
-docker build --tag qlib-examlpe:latest -f Dockerfile .
+docker build --tag qlib-example:latest -f Dockerfile .
 
 # Build for dockerhub
-docker build --tag pingsutw/qlib-examlpe:latest -f Dockerfile .
+docker build --tag pingsutw/qlib-example:latest -f Dockerfile .
 ```
